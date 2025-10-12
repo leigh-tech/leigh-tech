@@ -1,0 +1,97 @@
+/* Basic Reset and Font */
+body {
+    font-family: 'times new roman', courier;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f9; /* Light grey background */
+    display: flex;
+    justify-content: center; /* Center the card horizontally */
+    align-items: flex-start; /* Align to the top of the page */
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Profile Card Styling */
+.profile-card {
+    background-color: #9c9696f3; /* White background for the card */
+    width: 100%;
+    max-width: 600px; /* Keep it narrow for better readability */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center; /* Center text within the card */
+}
+
+/* Header & Titles */
+header {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #2c3e50; /* Darker blue heading */
+    margin-bottom: 5px;
+}
+
+header h2 {
+    font-size: 1.2em;
+    color: #111383; /* Subdued subtitle color */
+    font-weight: 400;
+}
+
+/* Profile Photo */
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; /* Makes the image a circle */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border: 5px solid #111383; /* Blue border around the photo */
+    margin-bottom: 25px;
+}
+
+/* Sections */
+.bio, .details {
+    text-align: left; /* Align section text to the left */
+    margin-bottom: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #333; /* Light separator line */
+}
+
+h3 {
+    color: #111383; /* Blue for section titles */
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* List Styling (for Details) */
+.details ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+}
+
+.details li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Links */
+a {
+    color: #111383;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #111383; /* Darken link color on hover */
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #333;
+    font-size: 0.8em;
+    color: #111383;
+}
