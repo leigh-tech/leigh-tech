@@ -1,45 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name's Profile</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <title>Leighton Leith Pillay | Portfolio</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <div class="profile-card">
         <header>
-            
             <h1>Leighton Leith Pillay</h1>
             <h2>SOFTWARE DEVELOPER</h2>
         </header>
 
-        <img src="leighton.jpg" alt="A professional photo of [Your Name]" class="profile-photo">
+        <img src="leighton.jpg" alt="Leighton Leith Pillay" class="profile-photo">
 
         <section class="bio">
             <h3>About Me</h3>
-            <p>Hello! I am a passionate IT Student. I thrive on website developing, solving complex problems/creating beautiful designs. Outside of work, I enjoy outdoor activities and watching series.</p>
+            <p>Hello! I am a passionate IT student who thrives on website development, solving complex problems, and creating beautiful designs. Outside of coding, I enjoy outdoor activities and watching series.</p>
+        </section>
+
+        <!-- ===== Slideshow Section ===== -->
+        <section class="slideshow">
+            <h3>My Work & Projects</h3>
+
+            <div class="slideshow-container">
+                <div class="slide fade">
+                    <img src="leith design.jpg" alt="Project 1">
+                </div>
+
+                <div class="slide fade">
+                    <img src="nobztech design.jpg" alt="Project 2">
+                </div>
+
+                <div class="slide fade">
+    <video controls muted>
+        <source src="quote design.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+                <!-- Buttons -->
+                <a class="prev" onclick="changeSlide(-2)">&#10094;</a>
+                <a class="next" onclick="changeSlide(1)">&#10095;</a>
+            </div>
+
+            <div class="dots">
+                <span class="dot" onclick="setSlide(1)"></span>
+                <span class="dot" onclick="setSlide(2)"></span>
+                <span class="dot" onclick="setSlide(3)"></span>
+            </div>
         </section>
 
         <section class="details">
             <h3>Contact & Links</h3>
             <ul>
-                <li><strong>Location:</strong>durban, South Africa</li>
-                <li><strong>Email:</strong> <a href="leightonpillay2007@gmail.com">leightonpillay2007@gmail.com</li>
-            <li>call:<strong><a href="076 815 0473">076 815 0473</a></strong></li>
+                <li><strong>Location:</strong> <a href="Durban, South Africa">Durban, South Africa</a></li>
+                <li><strong>Email:</strong> <a href="mailto:leightonpillay2007@gmail.com">leightonpillay2007@gmail.com</a></li>
+                <li><strong>Call:</strong> <a href="tel:0768150473">076 815 0473</li>
             </ul>
         </section>
 
         <footer>
-            <p>&copy; 2025 Leighton Leith Pillay</p>
+            <p>&copy; 2025 Leighton Leith Pillay | All Rights Reserved</p>
         </footer>
     </div>
 
+    <!-- ===== JavaScript for Slideshow ===== -->
+    <script>
+let slideIndex = 1;
+let slideDelay = 8000; // 8 seconds per slide (for images)
+let autoSlide;
+
+showSlide(slideIndex);
+startAutoSlide();
+
+function changeSlide(n) {
+    showSlide(slideIndex += n);
+}
+
+function setSlide(n) {
+    showSlide(slideIndex = n);
+}
+
+function startAutoSlide() {
+    autoSlide = setInterval(() => {
+        changeSlide(1);
+    }, slideDelay);
+}
+
+function stopAutoSlide() {
+    clearInterval(autoSlide);
+}
+
+function showSlide(n) {
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+
+    // Hide all slides & pause any playing videos
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+        slides[i].classList.remove("show");
+        let video = slides[i].querySelector("video");
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+            video.onplay = null;
+            video.onended = null;
+        }
+    }
+
+    // Update active dot
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    // Show current slide
+    slides[slideIndex - 1].style.display = "block";
+    slides[slideIndex - 1].classList.add("show");
+    dots[slideIndex - 1].className += " active";
+
+    // Handle video slides
+    let currentVideo = slides[slideIndex - 1].querySelector("video");
+    if (currentVideo) {
+        stopAutoSlide(); // stop automatic transitions
+        currentVideo.play();
+
+        // when video finishes, continue slideshow
+        currentVideo.onended = () => {
+            startAutoSlide();
+            changeSlide(1);
+        };
+    }
+}
+</script>
 </body>
-
 </html>
-
-
